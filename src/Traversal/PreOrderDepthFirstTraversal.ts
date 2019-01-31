@@ -3,30 +3,29 @@ import ITreeNode from '../Tree/ITreeNode';
 
 export default class PreOrderDepthFirstTraversal implements ITraversal {
 
-  private condition: ((data: { [key: string]: any }, height: number) => boolean) | null;
-  private action: ((data: { [key: string]: any }, height: number) => void) | null;
+  private condition: ((data: { [key: string]: any }, depth: number) => boolean) | null;
+  private action: ((data: { [key: string]: any }, depth: number) => void) | null;
 
   constructor() {
     this.condition = null;
     this.action = null;
   }
 
-  traverse(rootNode: ITreeNode, height: number = 0): void {
-    let shouldBreak: boolean = false;
-    if(this.condition !== null && this.action !== null && this.condition(rootNode.data, height)){
-      this.action(rootNode.data, height);
-      shouldBreak = true;
+  traverse(node: ITreeNode, depth: number = 0): void {
+    if(this.condition !== null && this.action !== null && this.condition(node.data, depth)){
+      this.action(node.data, depth);
+      return;
     }
-    if(!shouldBreak && rootNode.children !== null) {
-      rootNode.children.map(node => {
-        this.traverse(node, height++);
+    if(node.children !== null) {
+      node.children.map(childNode => {
+        this.traverse(childNode, depth++);
       })
     }
   };
-  setCondition(condition: (data: { [key: string]: any }, height: number) => boolean): void{
+  setCondition(condition: (data: { [key: string]: any }, depth: number) => boolean): void{
     this.condition = condition;
   };
-  setAction(action: (data: { [key: string]: any }, height: number) => void): void{
+  setAction(action: (data: { [key: string]: any }, depth: number) => void): void{
     this.action = action;
   };
 }

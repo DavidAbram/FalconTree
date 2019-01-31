@@ -75,12 +75,12 @@ describe('Traversal', () => {
     node2.children = [node21, node22];
     node3.children = [node31];
 
-    preOrderDepthFirst.setCondition((data, _) => (
+    preOrderDepthFirst.setCondition((data) => (
       data.testData === 3
     ));
 
-    preOrderDepthFirst.setAction((data, height) => {
-      console.log(height, data.secret);
+    preOrderDepthFirst.setAction((data, depth) => {
+      console.log(depth, data.secret);
     });
 
     expect(() => {

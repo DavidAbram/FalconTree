@@ -18,8 +18,8 @@ describe('PreOrderDepthFirstTraversal', () => {
   test('PreOrderDepthFirstTraversal setAction does not throw', () => {
     const preOrderDepthFirst = TraversalFactory.createTraversal(TraversalType.PreOrderDepthFirst) as PreOrderDepthFirstTraversal;
     expect(() => {
-      preOrderDepthFirst.setAction((data, height) => {
-        console.log(data, height);
+      preOrderDepthFirst.setAction((data, depth) => {
+        console.log(data, depth);
       });
     }).not.toThrow();
   });
