@@ -7,7 +7,7 @@ describe('Traversal', () => {
   test('advanced traversal', (done) => {
     const preOrderDepthFirst = TraversalFactory.createTraversal(TraversalType.PreOrderDepthFirst) as PreOrderDepthFirstTraversal;
     const rootNode = new TreeNode(
-      { ['testData']: 0},
+      { ['testData']: 1},
       null,
     );
     const node1 = new TreeNode(
@@ -51,6 +51,14 @@ describe('Traversal', () => {
     node1.children = [node11, node12, node13];
     node2.children = [node21, node22];
     node3.children = [node31];
+
+    preOrderDepthFirst.setCondition((data, _) => (
+      data.testData === 3
+    ));
+
+    preOrderDepthFirst.setAction((data, height) => {
+      console.log(height, data);
+    });
 
     expect(() => {
       preOrderDepthFirst.traverse(rootNode);

@@ -11,10 +11,16 @@ export default class PreOrderDepthFirstTraversal implements ITraversal {
     this.action = null;
   }
 
-  traverse(rootNode: ITreeNode, height: number = 0): void{
-    console.log(rootNode, height, this.condition, this.action);
-    if(rootNode.children) {
-      console.log(rootNode.children);
+  traverse(rootNode: ITreeNode, height: number = 0): void {
+    let shouldBreak: boolean = false;
+    if(this.condition !== null && this.action !== null && this.condition(rootNode.data, height)){
+      this.action(rootNode.data, height);
+      shouldBreak = true;
+    }
+    if(!shouldBreak && rootNode.children !== null) {
+      rootNode.children.map(node => {
+        this.traverse(node, height++);
+      })
     }
   };
   setCondition(condition: (data: { [key: string]: any }, height: number) => boolean): void{
