@@ -1,5 +1,5 @@
 {
-  "name": "tree",
+  "name": "falcon-tree",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
@@ -7,16 +7,8 @@
     "start": "ts-node ./src/index.js",
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DavidAbram/tree.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DavidAbram/tree/issues"
-  },
-  "homepage": "https://github.com/DavidAbram/tree#readme",
   "dependencies": {
     "@types/node": "^10.12.20",
     "ts-node": "^8.0.2"
